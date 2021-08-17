@@ -2,7 +2,7 @@ import streamlit as st
 
 st.sidebar.title("Analysis of Indian Election using Twitter")
 st.sidebar.write("""
-**MINI PROJECT · CREATED BY:** **Harsh Chaturvedi** **·** **Section:** ML  **·**  **Roll No:** 2014669 
+**MINI PROJECT · BY:** **Harsh Chaturvedi** **·** **Section:** ML  **·**  **Roll No:** 2014669 
 """)
 
 st.sidebar.write("""
@@ -20,4 +20,4 @@ st.sidebar.button("Collect Tweets")
 
 st.write("""# Collected Tweets""")
 
-st.write(f"""Enter handle/hashtag in above field""")
+st.write(f"""Enter handle/hashtag in **Get Tweets** field""")
