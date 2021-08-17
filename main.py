@@ -1,20 +1,23 @@
 import streamlit as st
 
-st.title("Analysis of Indian Election")
-
-st.write("""
-Mini Project: Analysis of Indian Election using Twitter
-
-### Created By
-**Harsh Chaturvedi**  
-**Section:** ML  
-**Roll No:** 2014669  
+st.sidebar.title("Analysis of Indian Election using Twitter")
+st.sidebar.write("""
+**MINI PROJECT · CREATED BY:** **Harsh Chaturvedi** **·** **Section:** ML  **·**  **Roll No:** 2014669 
 """)
 
-st.write("# Get Tweets")
-st.write("Enter Twitter `@Handle` or `#Hashtag`")
-st.text_input("#hashtag or @handle")
-n_tweets = st.slider(
-    "Enter Number of Tweets to collect",
-    min_value=10, max_value=100
+st.sidebar.write("""
+# Get Tweets
+Enter Twitter `@Handle` or `#Hashtag`
+""")
+
+username_handle = st.sidebar.text_input("")
+n_tweets = st.sidebar.slider(
+    "Number of Tweets",
+    min_value=10, max_value=1000, value=100
 )
+st.sidebar.button("Collect Tweets")
+
+
+st.write("""# Collected Tweets""")
+
+st.write(f"""Enter handle/hashtag in above field""")
