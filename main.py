@@ -1,12 +1,18 @@
 import streamlit as st
+import tweepy as tp
 
-st.sidebar.title("Analysis of Indian Election using Twitter")
-st.sidebar.write("""
-**MINI PROJECT · BY:** **Harsh Chaturvedi** **·** **Section:** ML  **·**  **Roll No:** 2014669 
-""")
+from controller import TweetsController
+from model import TweetModel
+
+controller = TweetsController()
+
+st.sidebar.title("Analysis of Indian Election")
+# st.sidebar.write("""
+# ######**MINI PROJECT · BY:** **Harsh Chaturvedi** **·** **Section:** ML  **·**  **Roll No:** 2014669 
+# """)
 
 st.sidebar.write("""
-# Get Tweets
+## Get Tweets
 Enter Twitter `@Handle` or `#Hashtag`
 """)
 
@@ -19,5 +25,8 @@ st.sidebar.button("Collect Tweets")
 
 
 st.write("""# Collected Tweets""")
-
-st.write(f"""Enter handle/hashtag in **Get Tweets** field""")
+# if len(controller.tweets) == 0:
+if len(controller.tweets) > 0:
+    st.write(f"""Use Sidebar to Fetch Tweets""")
+else:
+    st.write("Sup")
