@@ -5,7 +5,7 @@ import React from "react";
 const TopBar = () => {
   return (
     <motion.div
-      className="grid w-screen bg-blue-700 bg-opacity-60 p-2 text-white fixed backdrop-blur-lg"
+      className="grid w-screen bg-white bg-opacity-60 p-2 text-black fixed backdrop-blur-lg"
       animate={{ translateY: [-40, 0], opacity: [0, 1] }}
       transition={{ duration: 0.4 }}
       style={{

@@ -6,7 +6,7 @@ import TopBar from "./TopBar";
 
 function App() {
   return (
-    <div className="w-screen min-h-screen bg-blue-700">
+    <div className="w-screen min-h-screen bg-white">
       <TopBar />
       <div className="h-16"></div>
       <SectionCard>
