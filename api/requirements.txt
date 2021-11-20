@@ -1,0 +1,4 @@
+flask
+tweepy
+tensorflow
+python-dotenv
