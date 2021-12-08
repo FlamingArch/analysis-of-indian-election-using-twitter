@@ -1,35 +1,44 @@
-import { Button } from "./Supporting/Button";
+import { React, useState } from "react";
+import Button from "./Supporting/Button";
 import SectionCard from "./Supporting/SectionCard";
 import SectionControls from "./Supporting/SectionControls";
-import { SectionHeading } from "./Supporting/SectionHeading";
 import TopBar from "./TopBar";
+import OverlayWindow from "./Supporting/OverlayWindow";
+
 
 function App() {
+  const [windowVisible, setWindowVisible] = useState(false);
+
+  function displayOverlayWindow() {
+    setWindowVisible(true);
+  }
+
   return (
     <div className="w-screen min-h-screen bg-white">
       <TopBar />
       <div className="h-16"></div>
-      <SectionCard>
-        <SectionHeading>Parties</SectionHeading>
+      <SectionCard heading="Parties">
         Run Sentiment Analysis on tweets mentioning Top Political Parties.
         <SectionControls>
-          <Button>Run</Button>
+          <Button onClick={displayOverlayWindow}>Run</Button>
         </SectionControls>
       </SectionCard>
-      <SectionCard>
-        <SectionHeading>Leaders</SectionHeading>
+
+      <SectionCard heading="Leaders">
         Run Sentiment Analysis on tweets mentioning Top Political Leaders.
         <SectionControls>
-          <Button>Run</Button>
+          <Button onClick={displayOverlayWindow}>Run</Button>
         </SectionControls>
       </SectionCard>
-      <SectionCard>
-        <SectionHeading>Controversies</SectionHeading>
+
+      <SectionCard heading="Controversies">
         Run Sentiment Analysis on tweets mentioning Top Political Controversies.
         <SectionControls>
-          <Button>Run</Button>
+          <Button onClick={displayOverlayWindow}>Run</Button>
         </SectionControls>
       </SectionCard>
+
+      {windowVisible && <OverlayWindow>Hello, World</OverlayWindow>}
     </div>
   );
 }
