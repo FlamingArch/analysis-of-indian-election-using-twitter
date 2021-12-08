@@ -1,10 +1,12 @@
 import { React, useState } from "react";
+
+import TopBar from "./Supporting/TopBar";
 import Button from "./Supporting/Button";
 import SectionCard from "./Supporting/SectionCard";
 import SectionControls from "./Supporting/SectionControls";
-import TopBar from "./TopBar";
 import OverlayWindow from "./Supporting/OverlayWindow";
 
+import { ChartBarIcon, InformationCircleIcon } from "@heroicons/react/outline";
 
 function App() {
   const [windowVisible, setWindowVisible] = useState(false);
@@ -15,8 +17,15 @@ function App() {
 
   return (
     <div className="w-screen min-h-screen bg-white">
-      <TopBar />
-      <div className="h-16"></div>
+      <TopBar
+        title="Analysis of Indian Elections using Twitter"
+        logo={<ChartBarIcon className="w-6 h-6" />}
+      >
+        <Button type="icon" onClick="">
+          <InformationCircleIcon className="w-6 h-6" />
+        </Button>
+      </TopBar>
+
       <SectionCard heading="Parties">
         Run Sentiment Analysis on tweets mentioning Top Political Parties.
         <SectionControls>
