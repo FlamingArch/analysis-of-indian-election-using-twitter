@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
 
 const SectionCard = (props) => {
   return (
@@ -10,6 +11,7 @@ const SectionCard = (props) => {
         className="w-full flex flex-col mx-4 my-2 rounded-lg shadow-2xl lg:w-1/2 md:w-3/4 p-4 sm:w-full h-full bg-blue-700"
         style={{ margin: "auto" }}
       >
+        {props.heading && <SectionHeading>{props.heading}</SectionHeading>}
         {props.children}
       </motion.div>
     </div>
