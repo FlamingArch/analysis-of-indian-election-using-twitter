@@ -6,9 +6,14 @@ import SectionCard from "./Supporting/SectionCard";
 import SectionControls from "./Supporting/SectionControls";
 import OverlayWindow from "./Supporting/OverlayWindow";
 
-import { ChartBarIcon, InformationCircleIcon } from "@heroicons/react/outline";
+import {
+  ChartBarIcon,
+  InformationCircleIcon,
+  MoonIcon,
+  SunIcon,
+} from "@heroicons/react/outline";
 
-function App() {
+function App(props) {
   const [windowVisible, setWindowVisible] = useState(false);
   const [windowTitle, setWindowTitle] = useState("");
 
@@ -48,13 +53,26 @@ function App() {
   ];
 
   return (
-    <div className="w-screen min-h-screen bg-black text-white">
+    <div
+      className={
+        "w-screen min-h-screen" + props.darkMode
+          ? "bg-black text-white"
+          : "bg-white text-black"
+      }
+    >
       <TopBar
         title="Analysis of Indian Elections using Twitter"
         logo={<ChartBarIcon className="w-6 h-6" />}
       >
         <Button type="icon" onClick="">
           <InformationCircleIcon className="w-6 h-6" />
+        </Button>
+        <Button type="icon" onClick="">
+          {props.darkMode ? (
+            <SunIcon className="w-6 h-6" />
+          ) : (
+            <MoonIcon className="w-6 h-6" />
+          )}
         </Button>
       </TopBar>
 
