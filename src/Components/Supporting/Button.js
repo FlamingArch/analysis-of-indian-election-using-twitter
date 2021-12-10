@@ -5,7 +5,7 @@ const Button = (props) => {
     var raisedButton =
       "bg-white text-black w-min px-4 py-2 rounded-md shadow-md hover:shadow-xl hover:scale-110 transform transition-all";
     var iconButton =
-      "hover:bg-blue-900 hover:bg-opacity-20 w-min rounded-lg p-2 transition-all";
+      "hover:bg-blue-900 hover:bg-opacity-40 w-min rounded-lg p-2 transition-all";
     switch (type) {
       case "raised":
         return raisedButton;
