@@ -1,30 +1,20 @@
-// React
 import { React, useContext } from "react";
-
-// Components
-import OverlayWindow from "./Supporting/OverlayWindow";
-
-// Context
 import { AppContext } from "./AppContext";
-import { HomeScreen } from "./Screens/HomeScreen";
-import SectionCard from "./Supporting/SectionCard";
+import HomeScreen from "./Screens/HomeScreen";
+import { Window, SectionCard, OverlayWindow } from "./ThemeControls";
 
 function App(props) {
   const context = useContext(AppContext);
-  const windowStyle = context.darkMode
-    ? "w-screen min-h-screen text-white bg-black"
-    : "w-screen min-h-screen text-black bg-white";
   return (
-    <div className={windowStyle}>
+    <Window darkMode={context.darkMode}>
       <HomeScreen />
-
       <OverlayWindow
         visible={context.overlayWindowVisible}
         title={context.overlayWindowTitle}
       >
         <SectionCard>Hello, World</SectionCard>
       </OverlayWindow>
-    </div>
+    </Window>
   );
 }
 

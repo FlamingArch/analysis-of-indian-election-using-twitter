@@ -1,16 +1,18 @@
 import { React, useContext } from "react";
 import { AppContext } from "../AppContext";
-import TopBar from "../Supporting/TopBar";
-import Button from "../Supporting/Button";
-import SectionCard from "../Supporting/SectionCard";
-import SectionControls from "../Supporting/SectionControls";
+import {
+  TopBar,
+  Button,
+  SectionCard,
+  SectionControls,
+  Page,
+} from "../ThemeControls";
 import ButtonToggleDarkMode from "../ButtonToggleDarkMode";
-import { Page } from "../Supporting/Page";
 
 // Icons
 import { ChartBarIcon, InformationCircleIcon } from "@heroicons/react/outline";
 
-export const HomeScreen = () => {
+const HomeScreen = () => {
   const context = useContext(AppContext);
 
   return (
@@ -36,3 +38,5 @@ export const HomeScreen = () => {
     </Page>
   );
 };
+
+export default HomeScreen;
