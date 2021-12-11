@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import TopBar from "./TopBar";
 
 const OverlayWindow = (props) => {
-  return (
+  return props.visible ? (
     <motion.div
       style={{
         gridTemplateRows: "auto 1fr",
@@ -19,7 +19,7 @@ const OverlayWindow = (props) => {
       ></TopBar>
       <div className="">{props.children}</div>
     </motion.div>
-  );
+  ) : null;
 };
 
 export default OverlayWindow;
