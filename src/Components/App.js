@@ -1,5 +1,5 @@
 import { React, useContext } from "react";
-import { AppContext } from "./AppContext";
+import { AppContext } from "./Context";
 import HomeScreen from "./Screens/HomeScreen";
 import { Window, SectionCard, OverlayWindow } from "./ThemeControls";
 
