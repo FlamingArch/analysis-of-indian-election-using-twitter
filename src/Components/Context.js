@@ -1,16 +1,36 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 
 export const AppContext = createContext();
 
+const useThemeDetector = () => {
+  const getCurrentTheme = () =>
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  const [isDarkTheme, setIsDarkTheme] = useState(getCurrentTheme());
+
+  const mqListener = (e) => {
+    setIsDarkTheme(e.matches);
+  };
+
+  useEffect(() => {
+    const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+    darkThemeMq.addListener(mqListener);
+    return () => darkThemeMq.removeListener(mqListener);
+  }, []);
+
+  return isDarkTheme;
+};
+
 export const AppProvider = (props) => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(useThemeDetector());
 
   function toggleDarkMode() {
     setDarkMode(!darkMode);
   }
 
-  const [windowVisible, setWindowVisible] = useState(false);
-  const [windowTitle, setWindowTitle] = useState("");
+  const [selectedPage, setSelectedPage] = useState(null);
+
+  const closeSelectedPage = () => setSelectedPage(null);
 
   const listItems = [
     {
@@ -43,8 +63,7 @@ export const AppProvider = (props) => {
   ];
 
   function displayOverlayWindow(pageTitle) {
-    setWindowTitle(pageTitle);
-    setWindowVisible(true);
+    setSelectedPage(pageTitle);
   }
 
   return (
@@ -53,8 +72,8 @@ export const AppProvider = (props) => {
         darkMode: darkMode,
         toggleDarkMode: toggleDarkMode,
         topics: listItems,
-        overlayWindowVisible: windowVisible,
-        topicPageTitle: windowTitle,
+        selectedPage: selectedPage,
+        closeSelectedPage: closeSelectedPage,
       }}
     >
       {props.children}

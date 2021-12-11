@@ -1,0 +1,16 @@
+import React, { useContext } from "react";
+import { OverlayWindow, SectionCard } from "../ThemeControls";
+import { AppContext } from "../Context";
+
+export const PartiesPage = () => {
+  const context = useContext(AppContext);
+  return (
+    <OverlayWindow
+      darkMode={context.darkMode}
+      visible={context.selectedPage === "Parties"}
+      title="Parties"
+    >
+      <SectionCard>Work in Progress</SectionCard>
+    </OverlayWindow>
+  );
+};
