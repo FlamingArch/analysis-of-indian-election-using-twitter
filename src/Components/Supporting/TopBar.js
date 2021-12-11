@@ -5,7 +5,7 @@ import Button from "./Button";
 const TopBar = (props) => {
   return (
     <div className="relative h-20 z-10">
-      <div className="w-screen bg-black bg-opacity-80 backdrop-filter backdrop-blur-xl fixed">
+      <div className={`w-screen ${props.darkMode ? "bg-black" : "bg-white" } bg-opacity-80 backdrop-filter backdrop-blur-xl fixed`}>
         <div
           style={{ gridTemplateColumns: "1fr auto 1fr" }}
           className="grid p-4 h-min"
