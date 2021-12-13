@@ -11,32 +11,29 @@ class TwitterTopics:
                                "akhileshyadav", "arvindkejriwal", "soniagandhi"]
         self.topics_activities = ["kisanandolan", "caa", "farmlaw"]
 
-    def fetch_parties(self):
+    def fetch_parties(self, n=20):
         print("Fetching tweets for Parties:")
         tweets = []
         for topic in self.topics_parties:
-            print("\n:: " + topic)
-            tweets = self.client.get_hashtag_tweets(topic, 100)
-            for tweet in tweets:
-                tweets.append(tweet)
+            print(":: " + topic)
+            topic_tweets = self.client.get_hashtag_tweets(topic, n)
+            tweets.append(topic_tweets)
         return tweets
 
-    def fetch_leaders(self):
+    def fetch_leaders(self, n=20):
         print("Fetching tweets for Leaders:")
         tweets = []
         for topic in self.topics_leaders:
-            print("\n:: " + topic)
-            tweets = self.client.get_hashtag_tweets(topic, 100)
-            for tweet in tweets:
-                tweets.append(tweet)
+            print(":: " + topic)
+            topic_tweets = self.client.get_hashtag_tweets(topic, n)
+            tweets.append(topic_tweets)
         return tweets
 
-    def fetch_activities(self):
+    def fetch_controversies(self, n=20):
         print("Fetching tweets for Activities:")
         tweets = []
         for topic in self.topics_activities:
-            print("\n:: " + topic)
-            tweets = self.client.get_hashtag_tweets(topic, 100)
-            for tweet in tweets:
-                tweets.append(tweet)
+            print(":: " + topic)
+            topic_tweets = self.client.get_hashtag_tweets(topic, n)
+            tweets.append(topic_tweets)
         return tweets

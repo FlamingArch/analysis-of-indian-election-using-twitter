@@ -15,12 +15,18 @@ class TwitterClient:
 
     def get_hashtag_tweets(self, hashtag, count):
         tweets = []
-        for tweet in self.api.search(q=hashtag, count=count, tweet_mode="extended"):
-            tweets.append(tweet.full_text)
+        for tweet in self.api.search_tweets(q=hashtag, count=count, tweet_mode="extended"):
+            tweets.append({
+                "text": tweet.full_text,
+                "username": tweet.user.screen_name
+            })
         return tweets
 
     def get_user_tweets(self, username, count):
         tweets = []
         for tweet in self.api.user_timeline(screen_name=username, count=count, tweet_mode="extended"):
-            tweets.append(tweet.full_text)
+            tweets.append({
+                "text": tweet.full_text,
+                "username": tweet.user.screen_name
+            })
         return tweets
