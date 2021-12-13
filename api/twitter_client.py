@@ -1,6 +1,6 @@
 # Secrets
 from tweepy import API, OAuthHandler
-from secrets import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
+from secret import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
 
 
 class TwitterClient:

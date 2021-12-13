@@ -23,4 +23,4 @@ def controversies():
     return f"{JSONEncoder().encode(TwitterTopics().fetch_controversies())}"
 
 
-app.run()
+app.run(port=42069, debug=True)
