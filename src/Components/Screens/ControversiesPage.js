@@ -10,7 +10,7 @@ export const ControversiesPage = () => {
       visible={context.selectedPage === "Controversies"}
       title="Controversies"
     >
-      <SectionCard>Work in Progress</SectionCard>
+      <SectionCard background="bg-red-700">Something went wrong</SectionCard>
     </OverlayWindow>
   );
 };

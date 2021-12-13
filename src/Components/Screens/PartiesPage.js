@@ -10,7 +10,7 @@ export const PartiesPage = () => {
       visible={context.selectedPage === "Parties"}
       title="Parties"
     >
-      <SectionCard>Work in Progress</SectionCard>
+      <SectionCard background="bg-red-700">Something went wrong</SectionCard>
     </OverlayWindow>
   );
 };

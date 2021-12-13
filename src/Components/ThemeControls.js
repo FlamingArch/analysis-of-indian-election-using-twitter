@@ -37,7 +37,7 @@ export const OverlayWindow = (props) => {
       transition={{ duration: 0.2 }}
       className={`w-full h-full absolute ${
         props.darkMode ? "bg-black" : "bg-white"
-      } bg-opacity-80 backdrop-blur-3xl backdrop-filter z-20 top-0 left-0 right-0 bottom-0 grid shadow-2xl`}
+      } bg-opacity-80 backdrop-blur-3xl backdrop-filter z-20 top-0 left-0 right-0 bottom-0 grid shadow-2xl opacity-0`}
     >
       <TopBar
         closeButtonAction={context.closeSelectedPage}
@@ -62,7 +62,7 @@ export const SectionCard = (props) => {
           duration: 0.4,
           delay: props.staggerTransition ? props.id * 0.15 : 0,
         }}
-        className="w-full flex flex-col mx-4 my-2 rounded-lg shadow-2xl lg:w-1/2 md:w-3/4 p-4 sm:w-full h-full bg-blue-700"
+        className={`w-full flex flex-col mx-4 my-2 rounded-lg shadow-2xl lg:w-1/2 md:w-3/4 p-4 sm:w-full h-full ${ props.background ?? "bg-blue-700"}`}
         style={{ margin: "auto" }}
       >
         {props.heading && <SectionHeading>{props.heading}</SectionHeading>}
