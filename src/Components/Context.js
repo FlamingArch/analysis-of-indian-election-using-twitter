@@ -66,6 +66,13 @@ export const AppProvider = (props) => {
     setSelectedPage(pageTitle);
   }
 
+  function getPartiesTweets() {
+    var json = fetch("http://localhost:42069/parties").then((res) =>
+      console.log(res.json())
+    );
+    console.log(json);
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -74,6 +81,7 @@ export const AppProvider = (props) => {
         topics: listItems,
         selectedPage: selectedPage,
         closeSelectedPage: closeSelectedPage,
+        fetchPartiesTweets: getPartiesTweets,
       }}
     >
       {props.children}

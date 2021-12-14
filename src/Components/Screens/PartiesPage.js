@@ -10,7 +10,9 @@ export const PartiesPage = () => {
       visible={context.selectedPage === "Parties"}
       title="Parties"
     >
-      <SectionCard background="bg-red-700">Something went wrong</SectionCard>
+      <SectionCard background="bg-red-700">
+        {context.fetchPartiesTweets()}
+      </SectionCard>
     </OverlayWindow>
   );
 };

@@ -8,4 +8,5 @@ with open("secret.py", "w") as f:
     f.write(f'ACCESS_TOKEN_SECRET = "{input("Access Token Secret: ")}"\n')
 
 print("SECRET.PY CREATED")
-print("Cpt. Obvious Says:\n    Don't share the secret.py file (and your API keys) with anyone.\n    Not even your parents.\n    Specially not the hot girl you've been looking at during work.    \nPS: She probably already has a boyfriend...")
+print("Cpt. Obvious Says:\n    Don't share the secret.py file (and your API keys) with anyone.\n    Not even your parents.\n    Specially not the hot girl you've been looking at during work.    \n    PS: She probably already has a boyfriend...")
+print("NOTE: The original repo already has secret.py gitignored.")
