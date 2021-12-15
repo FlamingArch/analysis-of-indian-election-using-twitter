@@ -20,6 +20,8 @@ class AnalysisModel:
         self.test = self.data['test']
 
         self.encoder = self.meta.features['text'].encoder
+        self.pre_process()
+        self.build_model()
 
     def pre_process(self):
         self.BUFFER_SIZE = 10000

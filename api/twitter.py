@@ -44,11 +44,11 @@ class TwitterTopics:
 
     def fetch_parties(self, n=20):
         print("Fetching tweets for Parties:")
-        tweets = []
+        tweets = {}
         for topic in self.topics_parties:
             print(":: " + topic)
             topic_tweets = self.client.get_hashtag_tweets(topic, n)
-            tweets.append(topic_tweets)
+            tweets[topic] = (topic_tweets)
         return tweets
 
     def fetch_leaders(self, n=20):
@@ -57,7 +57,7 @@ class TwitterTopics:
         for topic in self.topics_leaders:
             print(":: " + topic)
             topic_tweets = self.client.get_hashtag_tweets(topic, n)
-            tweets.append(topic_tweets)
+            tweets[topic] = (topic_tweets)
         return tweets
 
     def fetch_controversies(self, n=20):
@@ -66,5 +66,5 @@ class TwitterTopics:
         for topic in self.topics_activities:
             print(":: " + topic)
             topic_tweets = self.client.get_hashtag_tweets(topic, n)
-            tweets.append(topic_tweets)
+            tweets[topic] = (topic_tweets)
         return tweets
