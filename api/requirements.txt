@@ -1,4 +1,7 @@
 flask
 tweepy
+numpy
+matplotlib
 tensorflow
+tensorflow_datasets
 python-dotenv

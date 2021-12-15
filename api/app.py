@@ -3,7 +3,7 @@ from re import A
 from flask import Flask, request
 from json import JSONEncoder
 
-from twitter_topics import TwitterTopics
+from twitter import TwitterTopics
 
 app = Flask(__name__)
 
