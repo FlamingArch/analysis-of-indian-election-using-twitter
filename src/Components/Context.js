@@ -1,3 +1,6 @@
+import _ from "loadsh";
+import $ from "jquery";
+import { result } from "lodash";
 import { useState, createContext, useEffect } from "react";
 
 export const AppContext = createContext();
@@ -63,14 +66,16 @@ export const AppProvider = (props) => {
   ];
 
   function displayOverlayWindow(pageTitle) {
+    getTweets(_.lowerCase(pageTitle));
     setSelectedPage(pageTitle);
   }
 
-  function getPartiesTweets() {
-    var json = fetch("http://localhost:42069/parties").then((res) =>
-      console.log(res.json())
-    );
-    console.log(json);
+  const [tweets, setTweets] = useState([]);
+
+  function getTweets(count) {
+    $.getJSON("localhost:42069/fetch/parties", (res) => {
+      setTweets([result]);
+    });
   }
 
   return (
@@ -79,9 +84,10 @@ export const AppProvider = (props) => {
         darkMode: darkMode,
         toggleDarkMode: toggleDarkMode,
         topics: listItems,
+        tweets: tweets,
         selectedPage: selectedPage,
         closeSelectedPage: closeSelectedPage,
-        fetchPartiesTweets: getPartiesTweets,
+        fetchTweets: getTweets,
       }}
     >
       {props.children}

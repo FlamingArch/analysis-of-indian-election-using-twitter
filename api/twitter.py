@@ -40,7 +40,8 @@ class TwitterTopics:
                                "ncp", "shivsena", "samajwadi", "bsp"]
         self.topics_leaders = ["narendramodi", "rahulgandhi",
                                "akhileshyadav", "arvindkejriwal", "soniagandhi"]
-        self.topics_activities = ["kisanandolan", "caa", "farmlaw"]
+        self.topics_activities = ["kisanandolan",
+                                  "caa", "farmlaw", "covid", "vaccine"]
 
     def fetch_parties(self, n=20):
         print("Fetching tweets for Parties:")

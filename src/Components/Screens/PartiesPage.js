@@ -1,5 +1,10 @@
 import React, { useContext } from "react";
-import { OverlayWindow, SectionCard } from "../ThemeControls";
+import {
+  OverlayWindow,
+  Preloader,
+  SectionCard,
+  SectionHeading,
+} from "../ThemeControls";
 import { AppContext } from "../Context";
 
 export const PartiesPage = () => {
@@ -10,9 +15,11 @@ export const PartiesPage = () => {
       visible={context.selectedPage === "Parties"}
       title="Parties"
     >
-      <SectionCard background="bg-red-700">
-        {context.fetchPartiesTweets()}
-      </SectionCard>
+      {context.tweets.map((e) => (
+        <SectionCard>
+          <SectionHeading>{e.text}</SectionHeading>
+        </SectionCard>
+      ))}
     </OverlayWindow>
   );
 };

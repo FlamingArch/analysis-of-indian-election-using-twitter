@@ -19,7 +19,7 @@
   "scripts": {
     "setup": "echo 'Performing First Time Setup...\n' && npm i && cd api && python3 create_secret.py && python3 -m pip install virtualenv && python3 -m virtualenv env && source ./env/bin/activate && python3 -m pip install -r requirements.txt",
     "startup": "source ./api/env/bin/activate && python3 ./api/app.py",
-    "serve": "craco start & npm run startAPI",
+    "serve": "craco start & npm run startup",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",

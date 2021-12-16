@@ -1,4 +1,4 @@
-import { ArrowLeftIcon } from "@heroicons/react/outline";
+import { ArrowLeftIcon, GlobeIcon } from "@heroicons/react/outline";
 import { motion } from "framer-motion";
 import { AppContext } from "./Context";
 import { React, useContext } from "react";
@@ -62,7 +62,9 @@ export const SectionCard = (props) => {
           duration: 0.4,
           delay: props.staggerTransition ? props.id * 0.15 : 0,
         }}
-        className={`w-full flex flex-col mx-4 my-2 rounded-lg shadow-2xl lg:w-1/2 md:w-3/4 p-4 sm:w-full h-full ${ props.background ?? "bg-blue-700"}`}
+        className={`w-full flex flex-col mx-4 my-2 rounded-lg shadow-2xl lg:w-1/2 md:w-3/4 p-4 sm:w-full h-full ${
+          props.background ?? "bg-blue-700"
+        }`}
         style={{ margin: "auto" }}
       >
         {props.heading && <SectionHeading>{props.heading}</SectionHeading>}
@@ -119,4 +121,8 @@ export const Window = (props) => {
     ? "w-screen min-h-screen text-white bg-black"
     : "w-screen min-h-screen text-black bg-white";
   return <div className={windowStyle}>{props.children}</div>;
+};
+
+export const Preloader = () => {
+  return <GlobeIcon className="w-6 h-6 animate-spin"></GlobeIcon>;
 };
