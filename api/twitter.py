@@ -63,7 +63,7 @@ class TwitterTopics:
 
     def fetch_leaders(self, n=20):
         print("Fetching tweets for Leaders:")
-        tweets = []
+        tweets = {}
         for topic in self.topics_leaders:
             print(":: " + topic)
             topic_tweets = self.client.get_hashtag_tweets(topic, n)
@@ -72,7 +72,7 @@ class TwitterTopics:
 
     def fetch_controversies(self, n=20):
         print("Fetching tweets for Activities:")
-        tweets = []
+        tweets = {}
         for topic in self.topics_activities:
             print(":: " + topic)
             topic_tweets = self.client.get_hashtag_tweets(topic, n)

@@ -154,33 +154,65 @@ export const Overlay = (props) => {
 };
 
 export function fetchResults(url, max_lim) {
+  console.log("FETCHRESULTS(" + url + ")");
   switch (url) {
     default:
-    case "127.0.0.1:42069/analyze/parties":
+    case "http://127.0.0.1:42069/analyze/parties":
       return {
-        bjp: Math.abs(_.random(1000, max_lim)),
-        bsp: Math.abs(_.random(1000, max_lim)),
-        congress: Math.abs(_.random(1000, max_lim)),
-        ncp: Math.abs(_.random(1000, max_lim)),
-        samajwadi: Math.abs(_.random(1000, max_lim)),
-        shivsena: Math.abs(_.random(1000, max_lim)),
+        bjp: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
+        bsp: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
+        congress: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
+        ncp: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
+        samajwadi: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
+        shivsena: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
       };
-    case "127.0.0.1:42069/analyze/leaders":
+    case "http://127.0.0.1:42069/analyze/leaders":
       return {
-        narendramodi: Math.abs(_.random(1000, max_lim)),
-        rahulgandhi: Math.abs(_.random(1000, max_lim)),
-        akhileshyadav: Math.abs(_.random(1000, max_lim)),
-        arvindkejriwal: Math.abs(_.random(1000, max_lim)),
-        soniagandhi: Math.abs(_.random(1000, max_lim)),
-        shivsena: Math.abs(_.random(1000, max_lim)),
+        narendramodi: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
+        rahulgandhi: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
+        akhileshyadav: Math.round(
+          _.random(Math.round(max_lim * 0.05), max_lim)
+        ),
+        arvindkejriwal: Math.round(
+          _.random(Math.round(max_lim * 0.05), max_lim)
+        ),
+        soniagandhi: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
+        shivsena: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
       };
-    case "127.0.0.1:42069/analyze/controversies":
+    case "http://127.0.0.1:42069/analyze/controversies":
       return {
-        kisanandolan: Math.abs(_.random(1000, max_lim)),
-        caa: Math.abs(_.random(1000, max_lim)),
-        farmlaw: Math.abs(_.random(1000, max_lim)),
-        covid: Math.abs(_.random(1000, max_lim)),
-        vaccine: Math.abs(_.random(1000, max_lim)),
+        kisanandolan: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
+        caa: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
+        farmlaw: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
+        covid: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
+        vaccine: Math.round(_.random(Math.round(max_lim * 0.05), max_lim)),
       };
   }
+}
+
+export function fetchTrends(pageTitle, max_lim) {
+  let items;
+  switch (_.lowerCase(pageTitle)) {
+    default:
+    case "parties":
+      items = ["bjp", "bsp", "congress", "ncp", "samajwadi", "shivsena"];
+      break;
+    case "leaders":
+      items = [
+        "narendramodi",
+        "rahulgandhi",
+        "akhileshyadav",
+        "arvindkejriwal",
+        "soniagandhi",
+        "shivsena",
+      ];
+      break;
+    case "controversies":
+      items = ["kisanandolan", "caa", "farmlaw", "covid", "vaccine"];
+  }
+  let trend = {};
+  items.forEach((e) => {
+    trend[e] = Math.round(_.random(Math.round(max_lim * 0.05), max_lim));
+  });
+  return trend;
 }

@@ -1,6 +1,6 @@
 import $ from "jquery";
 import _ from "lodash";
-import { fetchResults } from "./ThemeControls";
+import { fetchResults, fetchTrends } from "./ThemeControls";
 import { useState, createContext, useEffect } from "react";
 
 export const AppContext = createContext();
@@ -34,6 +34,7 @@ export const AppProvider = (props) => {
   const [selectedPage, setSelectedPage] = useState(null);
 
   const closeSelectedPage = () => {
+    setTrends({});
     setTweets([]);
     setSentimentAnalysis({});
     closeOverlay();
@@ -90,22 +91,26 @@ export const AppProvider = (props) => {
     });
   }
 
+  const [trends, setTrends] = useState({});
+
   const [overlay, setOverlay] = useState(false);
   const [content, setContent] = useState("");
 
   function displayOverlay(content) {
+    setTrends(fetchTrends(selectedPage, count));
     setContent(content);
     setOverlay(true);
   }
 
   function closeOverlay() {
     setContent("");
+    setTrends({});
     setOverlay(false);
     setSentimentAnalysis({});
   }
 
   function performSentimentAnalysis(topic) {
-    return fetchResults(`127.0.0.1:42069/analyse/${topic}`, count);
+    return fetchResults(`http://127.0.0.1:42069/analyze/${_.lowerCase(topic)}`, count);
   }
 
   const [sentimentAnalysis, setSentimentAnalysis] = useState({});
@@ -121,7 +126,7 @@ export const AppProvider = (props) => {
     setTimeout(() => {
       runSentimentAnalysis();
       setPerformingSentimentAnalysis(false);
-    }, 1500);
+    }, 15000 + Math.abs(count / 100));
   }
 
   return (
@@ -147,6 +152,7 @@ export const AppProvider = (props) => {
         sentimentAnalysis: sentimentAnalysis,
         performingSentimentAnalysis: performingSentimentAnalysis,
         run: run,
+        trends: trends,
       }}
     >
       {props.children}

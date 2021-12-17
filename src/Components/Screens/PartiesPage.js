@@ -113,7 +113,19 @@ export const PartiesPage = () => {
                 </SectionCard>
               ))}
           </BackdropCover>
-        ) : null}
+        ) : (
+          <BackdropCover darkMode={context.darkMode}>
+            <div className="h-16"></div>
+            <SectionCard>
+              <SectionHeading>Trend Analysis</SectionHeading>
+              {Object.keys(context.trends).map((key) => (
+                <p>
+                  {`${key}: ${context.trends[key]}`}
+                </p>
+              ))}
+            </SectionCard>
+          </BackdropCover>
+        )}
       </Overlay>
     </OverlayWindow>
   );
