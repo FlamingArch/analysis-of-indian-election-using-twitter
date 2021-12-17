@@ -62,8 +62,10 @@ export const SectionCard = (props) => {
           duration: 0.4,
           delay: props.staggerTransition ? props.id * 0.15 : 0,
         }}
-        className={`w-full flex flex-col mx-4 my-2 rounded-lg shadow-2xl lg:w-1/2 md:w-3/4 p-4 sm:w-full h-full ${
-          props.background ?? "bg-blue-700"
+        className={`w-full flex flex-col mx-4 my-2 rounded-lg shadow-2xl ${
+          props.expanded ? "w-full" : "lg:w-1/2 md:w-3/4 p-4 sm:w-full"
+        } h-full ${props.background ?? "bg-blue-700"} ${props.color} ${
+          props.padding
         }`}
         style={{ margin: "auto" }}
       >
@@ -125,4 +127,27 @@ export const Window = (props) => {
 
 export const Preloader = () => {
   return <GlobeIcon className="w-6 h-6 animate-spin"></GlobeIcon>;
+};
+
+export const Spacer = () => {
+  return <div className="h-full w-full"></div>;
+};
+
+export const BackdropCover = (props) => {
+  return (
+    <div
+      className={`w-screen h-screen absolute top-0 left-0 ${
+        props.darkMode ? "bg-black" : "bg-white"
+      } bg-opacity-80 backdrop-filter backdrop-blur-xl`}
+      style={{ WebkitBackdropFilter: "blur(48px)" }}
+    >
+      {props.children}
+    </div>
+  );
+};
+
+export const Overlay = (props) => {
+  return props.visible ? (
+    <div className="w-full h-full">{props.children}</div>
+  ) : null;
 };

@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 import tensorflow_datasets as tfds
 
@@ -66,14 +66,14 @@ class AnalysisModel:
             epochs=2
         )
 
-    def plot_evaluation(self):
-        hist = self.history.history
-        plt.plot(hist['loss'])
-        plt.plot(hist['val_loss'])
-        plt.legend(labels=['Training', 'Validation'])
-        plt.xlabel('Epochs')
-        plt.ylabel('Loss')
-        plt.show()
+    # def plot_evaluation(self):
+    #     hist = self.history.history
+    #     plt.plot(hist['loss'])
+    #     plt.plot(hist['val_loss'])
+    #     plt.legend(labels=['Training', 'Validation'])
+    #     plt.xlabel('Epochs')
+    #     plt.ylabel('Loss')
+    #     plt.show()
 
     def analyse(self, samples):
         sample_encoded = [self.encoder.encode(sample) for sample in samples]

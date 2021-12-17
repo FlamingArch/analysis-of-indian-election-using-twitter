@@ -1,6 +1,4 @@
-import _ from "loadsh";
 import $ from "jquery";
-import { result } from "lodash";
 import { useState, createContext, useEffect } from "react";
 
 export const AppContext = createContext();
@@ -33,7 +31,10 @@ export const AppProvider = (props) => {
 
   const [selectedPage, setSelectedPage] = useState(null);
 
-  const closeSelectedPage = () => setSelectedPage(null);
+  const closeSelectedPage = () => {
+    setTweets([]);
+    setSelectedPage(null);
+  };
 
   const listItems = [
     {
@@ -66,16 +67,35 @@ export const AppProvider = (props) => {
   ];
 
   function displayOverlayWindow(pageTitle) {
-    getTweets(_.lowerCase(pageTitle));
     setSelectedPage(pageTitle);
   }
 
+  const [loading, setLoading] = useState(false);
+
+  const [count, setCount] = useState(20);
   const [tweets, setTweets] = useState([]);
 
-  function getTweets(count) {
-    $.getJSON("localhost:42069/fetch/parties", (res) => {
-      setTweets([result]);
+  function getTweets(pageTitle, n = count) {
+    console.log("Getting Tweets for " + pageTitle);
+    setLoading(true);
+    $.getJSON(`http://127.0.0.1:42069/fetch/${pageTitle}/${n}`, (res) => {
+      console.log("RESPONSE:" + res);
+      setLoading(false);
+      setTweets([res]);
     });
+  }
+
+  const [overlay, setOverlay] = useState(false);
+  const [content, setContent] = useState("");
+
+  function displayOverlay(content) {
+    setContent(content);
+    setOverlay(true);
+  }
+
+  function closeOverlay() {
+    setContent("");
+    setOverlay(false);
   }
 
   return (
@@ -88,6 +108,13 @@ export const AppProvider = (props) => {
         selectedPage: selectedPage,
         closeSelectedPage: closeSelectedPage,
         fetchTweets: getTweets,
+        count: count,
+        setCount: setCount,
+        loading: loading,
+        overlay: overlay,
+        displayOverlay: displayOverlay,
+        content: content,
+        closeOverlay: closeOverlay,
       }}
     >
       {props.children}

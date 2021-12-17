@@ -1,5 +1,8 @@
-# Secrets
 from tweepy import API, OAuthHandler
+from tweepy import Cursor
+from datetime import date
+from datetime import timedelta
+# Secrets
 from secret import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
 
 
@@ -18,7 +21,9 @@ class TwitterClient:
         for tweet in self.api.search_tweets(q=hashtag, count=count, tweet_mode="extended"):
             tweets.append({
                 "text": tweet.full_text,
-                "username": tweet.user.screen_name
+                "username": tweet.user.screen_name,
+                "likes": tweet.favorite_count,
+                "retweets": tweet.retweet_count
             })
         return tweets
 
@@ -30,6 +35,10 @@ class TwitterClient:
                 "username": tweet.user.screen_name
             })
         return tweets
+
+    def get_hashtag_tweets_24hr(self, hashtag):
+        yesterday = date.today() - timedelta(days=1)
+        return len(Cursor(self.api.search, q=hashtag + str(yesterday) + " until:" + str(date.today()), tweet_mode='extended', lang='fa').items())
 
 
 class TwitterTopics:

@@ -1,9 +1,12 @@
 from flask import Flask, request, jsonify
 from flask.helpers import make_response
 
+from flask_cors import CORS
+
 from twitter import TwitterTopics
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/fetch/<topic>/<count>')

@@ -1,3 +1,42 @@
+# Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Abstract](#abstract)
+- [Introduction](#introduction)
+- [Problem Definition](#problem-definition)
+- [Literature Review](#literature-review)
+- [Proposed Work](#proposed-work)
+- [Tools and Frameworks Used](#tools-and-frameworks-used)
+  - [TensorFlow](#tensorflow)
+  - [Tweepy](#tweepy)
+  - [Flask](#flask)
+  - [Numpy](#numpy)
+  - [Matplotlib](#matplotlib)
+  - [Python](#python)
+  - [React.js](#reactjs)
+  - [Node.js](#nodejs)
+  - [Framer Motion](#framer-motion)
+  - [TailwindCSS](#tailwindcss)
+  - [JQuery](#jquery)
+  - [Lodash](#lodash)
+- [Project Overview](#project-overview)
+  - [Dataset](#dataset)
+  - [Web App](#web-app)
+  - [Trend Analysis](#trend-analysis)
+  - [Sentiment Analysis](#sentiment-analysis)
+- [System Configuration](#system-configuration)
+- [Results](#results)
+  - [Trend Analysis](#trend-analysis-1)
+    - [Parties](#parties)
+    - [Leaders](#leaders)
+    - [Controversies](#controversies)
+  - [Sentiment Analysis](#sentiment-analysis-1)
+    - [Parties](#parties-1)
+    - [Leaders](#leaders-1)
+    - [Controversies](#controversies-1)
+- [Conclusions](#conclusions)
+- [References](#references)
+
 # Abstract
 
 One of the most important players in modern civilisation is social media. By providing consumers with real-time online information channels without the limits of time and space, social media is redefining existing information behaviour. This results in a large amount of unstructured data that can be mined. This opens up a lot of possibilities for data analysis challenges for scientists. In this project, the system will analyse general user tweets from an electoral standpoint. The system will investigate how users feel about the Indian election. Based on the users' tweets, the proposed system determines the feasibility of developing a classification model to identify the political orientation of Twitter users based on tweet content and other user-based features.
@@ -210,15 +249,6 @@ Nvidia GeForce GTX 1080 8GB
 |  Sonia Gandhi   |       867        |
 
 ### Controversies
-
-|      Party      | Number of Tweets |
-| :-------------: | :--------------: |
-|       BJP       |      5,879       |
-|    Congress     |      3,221       |
-|       NCP       |      2,791       |
-|    Shivsena     |      4,111       |
-| Samajwadi Party |      1,277       |
-|       BSP       |       821        |
 
 | Controversy  | Number of Tweets |
 | :----------: | :--------------: |
