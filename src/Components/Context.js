@@ -1,4 +1,6 @@
 import $ from "jquery";
+import _ from "lodash";
+import { fetchResults } from "./ThemeControls";
 import { useState, createContext, useEffect } from "react";
 
 export const AppContext = createContext();
@@ -33,6 +35,8 @@ export const AppProvider = (props) => {
 
   const closeSelectedPage = () => {
     setTweets([]);
+    setSentimentAnalysis({});
+    closeOverlay();
     setSelectedPage(null);
   };
 
@@ -72,13 +76,14 @@ export const AppProvider = (props) => {
 
   const [loading, setLoading] = useState(false);
 
-  const [count, setCount] = useState(20);
+  const [count, setCount] = useState(20000);
   const [tweets, setTweets] = useState([]);
 
   function getTweets(pageTitle, n = count) {
+    setSentimentAnalysis({});
     console.log("Getting Tweets for " + pageTitle);
     setLoading(true);
-    $.getJSON(`http://127.0.0.1:42069/fetch/${pageTitle}/${n}`, (res) => {
+    $.getJSON(`http://127.0.0.1:42069/fetch/${pageTitle}/${10}`, (res) => {
       console.log("RESPONSE:" + res);
       setLoading(false);
       setTweets([res]);
@@ -96,6 +101,27 @@ export const AppProvider = (props) => {
   function closeOverlay() {
     setContent("");
     setOverlay(false);
+    setSentimentAnalysis({});
+  }
+
+  function performSentimentAnalysis(topic) {
+    return fetchResults(`127.0.0.1:42069/analyse/${topic}`, count);
+  }
+
+  const [sentimentAnalysis, setSentimentAnalysis] = useState({});
+  const [performingSentimentAnalysis, setPerformingSentimentAnalysis] =
+    useState(false);
+
+  function runSentimentAnalysis() {
+    setSentimentAnalysis(performSentimentAnalysis(_.lowerCase(selectedPage)));
+  }
+
+  function run() {
+    setPerformingSentimentAnalysis(true);
+    setTimeout(() => {
+      runSentimentAnalysis();
+      setPerformingSentimentAnalysis(false);
+    }, 1500);
   }
 
   return (
@@ -109,12 +135,18 @@ export const AppProvider = (props) => {
         closeSelectedPage: closeSelectedPage,
         fetchTweets: getTweets,
         count: count,
-        setCount: setCount,
+        setCount: (i) => {
+          setTweets([]);
+          setCount(i);
+        },
         loading: loading,
         overlay: overlay,
         displayOverlay: displayOverlay,
         content: content,
         closeOverlay: closeOverlay,
+        sentimentAnalysis: sentimentAnalysis,
+        performingSentimentAnalysis: performingSentimentAnalysis,
+        run: run,
       }}
     >
       {props.children}

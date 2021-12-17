@@ -10,7 +10,7 @@ function App(props) {
   const context = useContext(AppContext);
   return (
     <Window darkMode={context.darkMode}>
-      <HomeScreen />
+      { !context.selectedPage && <HomeScreen />}
       <PartiesPage />
       <LeadersPage />
       <ControversiesPage />

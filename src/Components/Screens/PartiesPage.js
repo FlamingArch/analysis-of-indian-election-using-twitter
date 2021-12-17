@@ -8,7 +8,6 @@ import {
   Overlay,
   SectionHeading,
   BackdropCover,
-  TopBar,
 } from "../ThemeControls";
 import { AppContext } from "../Context";
 import { ChatIcon, HeartIcon } from "@heroicons/react/outline";
@@ -38,7 +37,6 @@ export const PartiesPage = () => {
       <Overlay visible={context.overlay}>
         {context.content === "sentiment" ? (
           <BackdropCover darkMode={context.darkMode}>
-            {/* <TopBar ></TopBar> */}
             <div className="h-16"></div>
             <SectionCard heading="Fetch Tweets">
               <div className="w-min, h-auto">Count: {context.count}</div>
@@ -51,8 +49,8 @@ export const PartiesPage = () => {
                   type="range"
                   name="value"
                   id="value"
-                  max={100}
-                  min={1}
+                  max={100000}
+                  min={1000}
                   value={context.count}
                   onChange={(val) => context.setCount(val.target.value)}
                 />
@@ -60,27 +58,58 @@ export const PartiesPage = () => {
               {context.loading && <h1>Loading...</h1>}
             </SectionCard>
 
+            {context.tweets[0] && (
+              <SectionCard heading="Perform Analysis">
+                <SectionControls>
+                  <Button onClick={() => context.run()}>Run</Button>
+                </SectionControls>
+                {context.performingSentimentAnalysis &&
+                  "Performing Sentiment Analysis..."}
+              </SectionCard>
+            )}
+
             {context.tweets[0] &&
               Object.keys(context.tweets[0]).map((key) => (
-                <SectionCard>
+                <SectionCard background="bg-gray-900">
                   <SectionHeading>{key}</SectionHeading>
-                  {context.tweets[0][key].map((tweet) => (
-                    <SectionCard
-                      expanded={true}
-                      color="text-black"
-                      background="bg-white"
-                      padding="p-6"
-                    >
-                      <SectionHeading>{tweet.username}</SectionHeading>
-                      {tweet.text}
-                      <SectionControls>
-                        {tweet.retweets ?? 0}
-                        <ChatIcon className="h-6 w-6 mx-2"></ChatIcon>
-                        {tweet.likes ?? 69}
-                        <HeartIcon className="h-6 w-6 mx-2"></HeartIcon>
-                      </SectionControls>
-                    </SectionCard>
-                  ))}
+                  {context.sentimentAnalysis ? (
+                    <div>
+                      {Object.keys(context.sentimentAnalysis).length > 0
+                        ? "Sentiment Analysis Result:"
+                        : "Showing Top 10 Tweets:"}
+                      {Object.keys(context.sentimentAnalysis).length === 0 ? (
+                        context.tweets[0][key].map((tweet) => (
+                          <SectionCard
+                            expanded={true}
+                            color="text-black"
+                            background="bg-white"
+                            padding="p-6"
+                          >
+                            <SectionHeading>{tweet.username}</SectionHeading>
+                            {tweet.text}
+                            <SectionControls>
+                              {tweet.retweets ?? 0}
+                              <ChatIcon className="h-6 w-6 mx-2"></ChatIcon>
+                              {tweet.likes ?? 69}
+                              <HeartIcon className="h-6 w-6 mx-2"></HeartIcon>
+                            </SectionControls>
+                          </SectionCard>
+                        ))
+                      ) : (
+                        <div className="">
+                          <h1>Positive: {context.sentimentAnalysis[key]}</h1>
+                          <h1>
+                            Negative:
+                            {context.count - context.sentimentAnalysis[key]}
+                          </h1>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <SectionHeading>
+                      {JSON.stringify(context.sentimentAnalysis)}
+                    </SectionHeading>
+                  )}
                 </SectionCard>
               ))}
           </BackdropCover>

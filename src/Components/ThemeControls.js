@@ -2,6 +2,7 @@ import { ArrowLeftIcon, GlobeIcon } from "@heroicons/react/outline";
 import { motion } from "framer-motion";
 import { AppContext } from "./Context";
 import { React, useContext } from "react";
+import _ from "lodash";
 
 export const Button = (props) => {
   function getButtonType(type) {
@@ -86,7 +87,7 @@ export const SectionHeading = (props) => {
 
 export const TopBar = (props) => {
   return (
-    <div className="relative h-20 z-10">
+    <div className="relative h-20" style={{ zIndex: props.zIndex ?? 10 }}>
       <div
         className={`w-screen ${
           props.darkMode ? "bg-black" : "bg-white"
@@ -151,3 +152,35 @@ export const Overlay = (props) => {
     <div className="w-full h-full">{props.children}</div>
   ) : null;
 };
+
+export function fetchResults(url, max_lim) {
+  switch (url) {
+    default:
+    case "127.0.0.1:42069/analyze/parties":
+      return {
+        bjp: Math.abs(_.random(1000, max_lim)),
+        bsp: Math.abs(_.random(1000, max_lim)),
+        congress: Math.abs(_.random(1000, max_lim)),
+        ncp: Math.abs(_.random(1000, max_lim)),
+        samajwadi: Math.abs(_.random(1000, max_lim)),
+        shivsena: Math.abs(_.random(1000, max_lim)),
+      };
+    case "127.0.0.1:42069/analyze/leaders":
+      return {
+        narendramodi: Math.abs(_.random(1000, max_lim)),
+        rahulgandhi: Math.abs(_.random(1000, max_lim)),
+        akhileshyadav: Math.abs(_.random(1000, max_lim)),
+        arvindkejriwal: Math.abs(_.random(1000, max_lim)),
+        soniagandhi: Math.abs(_.random(1000, max_lim)),
+        shivsena: Math.abs(_.random(1000, max_lim)),
+      };
+    case "127.0.0.1:42069/analyze/controversies":
+      return {
+        kisanandolan: Math.abs(_.random(1000, max_lim)),
+        caa: Math.abs(_.random(1000, max_lim)),
+        farmlaw: Math.abs(_.random(1000, max_lim)),
+        covid: Math.abs(_.random(1000, max_lim)),
+        vaccine: Math.abs(_.random(1000, max_lim)),
+      };
+  }
+}
