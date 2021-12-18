@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 from flask.helpers import make_response
+from flask.json import JSONEncoder
+from model import AnalysisModel
 
 from flask_cors import CORS
 
@@ -28,12 +30,18 @@ def fetch(topic, count=20):
 
 @app.route('/analyse/<topic>/<count>')
 def analyse(topic, count=20):
+    model = AnalysisModel()
+    model.train()
+    model.train()
     if topic == "parties":
-        return f"Analysis of parties will appear here."
+        model.analyse(topic, count)
+        return JSONEncoder().encode(model.predictions)
     if topic == "leaders":
-        return f"Analysis of leaders will appear here."
+        model.analyse(topic, count)
+        return JSONEncoder().encode(model.predictions)
     if topic == "controversies":
-        return f"Analysis of controversies will appear here."
+        model.analyse(topic, count)
+        return JSONEncoder().encode(model.predictions)
 
     # @app.route('/parties/analyse')
     # def parties():
